@@ -65,7 +65,7 @@ Output:
 ## Parameters
 `gulp-file-inline` takes two parameters:
 
-- **type** - a string specifying CSS or javascript
+- **type** - a string specifying CSS (`css`) or javascript (`js`)
 - **path** - the path to your CSS or javascript file that you want to inject into the page
 
 This example will inject the CSS rules at `./src/css/styles.css` directly into all `./src/*.html` files:
@@ -76,6 +76,18 @@ gulp.src("./src/*.html")
 	.pipe(inject({
 		type: "css",
 		path: "./src/css/styles.css"
+	}))
+	.pipe(gulp.dest("./dist"));
+```
+
+This example will inject the JavaScript at `./src/js/scripts.js` directly into all `./src/*.html` files:
+```javascript
+var inject = require("gulp-file-inline");
+
+gulp.src("./src/*.html")
+	.pipe(inject({
+		type: "js",
+		path: "./src/js/scripts.js"
 	}))
 	.pipe(gulp.dest("./dist"));
 ```
