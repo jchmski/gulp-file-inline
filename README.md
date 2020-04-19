@@ -1,7 +1,9 @@
 
 # gulp-file-inline
 
-> a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly
+> a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into client-facing files.
+
+This project is a fork of [gulp-style-inline](https://github.com/vladfilipro/gulp-style-inject). Thank you Vlad Filip!
 
 # Installation
 
