@@ -1,91 +1,78 @@
 
 # gulp-file-inline
 
-> style-inject plugin for [gulp](https://github.com/wearefractal/gulp)
+> a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly
 
 ## Usage
 
-First, install `gulp-style-inject` as a development dependency:
+First, install `gulp-file-inline` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-style-inject
+npm install --save-dev gulp-file-inline
 ```
 
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var styleInject = require("gulp-style-inject");
+var inject = require("gulp-file-inline");
 
 gulp.src("./src/*.html")
-	.pipe(styleInject())
+	.pipe(inject())
 	.pipe(gulp.dest("./dist"));
 ```
 
-All your html files should include the following tag:
-
-```html
-    <!-- inject-style src="./path/file.css" -->
-```
+## Inlining CSS
+To inline your CSS, add this comment where you want to insert the `<style></style>` rules. The best location for this is in your `<head>` section
 
 Example:
 ```html
-<div>
-<!-- inject-style src="./test/p.css" -->
-<!-- inject-style src="./test/span.css" -->
-    <p>Some text</p>
-    <span>Some other text</span>
-</div>
+<head>
+	...
+	<!-- inline:css -->
+</head>
 ```
-Output
+Output:
 ```html
-<div>
-<style>
-p {
-    background-color: red;
-}
-</style>
-<style>
-span {
-    background-color: green;
-}
-</style>
-    <p>Some text</p>
-    <span>Some other text</span>
-</div>
+<head>
+	...
+	<style>body{margin:0}</style>
+</head>
 ```
 
-## Options
+## Inlining JavaScript
+To inline your JavaScript, add this comment where you want to insert the `<script></script>` rules. The best location immediately before your closing `body` tag
 
-The plugin can be used with an options object
+Example:
+```html
+<body>
+	...
+	<!-- inline:js -->
+</body>
+```
+Output:
+```html
+<body>
+	...
+	<script>console.log('wow, what a great plugin')</script>
+</body>
+```
+
+## Parameters
+
+*type* - a string specifying CSS or javascript
+*path* - the path to your CSS or javascript file that you want to inject into the page
 
 ```javascript
-var styleInject = require("gulp-style-inject");
+var inject = require("gulp-file-inline");
 
 gulp.src("./src/*.html")
-	.pipe(styleInject({
-		encapsulated: false,
-		path: './test/styles'
+	.pipe(inject({
+		type: "css",
+		path: "./src/css/styles.css"
 	}))
 	.pipe(gulp.dest("./dist"));
 ```
 
-Available options:
-- *encapsulated*: Type boolean, (default: true) - Specifies if the style code should be injected using a style tag
-- *path*: Type string, (default: '') - Specifies the base path of all style files
-- *match_pattern*: Type regular expression, (default: <\\!--\\s*inject-style\\s*(.*?)\\s*-->) - Specifies the pattern to look for when replacing
-
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
-[npm-url]: https://npmjs.org/package/gulp-style-inject
-[npm-image]: https://badge.fury.io/js/gulp-style-inject.png
-
-[travis-url]: http://travis-ci.org/vladfilipro/gulp-style-inject
-[travis-image]: https://secure.travis-ci.org/vladfilipro/gulp-style-inject.png?branch=master
-
-[coveralls-url]: https://coveralls.io/r/vladfilipro/gulp-style-inject
-[coveralls-image]: https://coveralls.io/repos/vladfilipro/gulp-style-inject/badge.png
-
-[depstat-url]: https://david-dm.org/vladfilipro/gulp-style-inject
-[depstat-image]: https://david-dm.org/vladfilipro/gulp-style-inject.png
