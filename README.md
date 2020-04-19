@@ -3,15 +3,15 @@
 
 > a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly
 
-## Usage
+# Installation
 
-First, install `gulp-file-inline` as a development dependency:
+Use npm to install `gulp-file-inline` as a development dependency
 
 ```shell
 npm install --save-dev gulp-file-inline
 ```
 
-Then, add it to your `gulpfile.js`:
+Then, add it to your `gulpfile.js`:= file
 
 ```javascript
 var inject = require("gulp-file-inline");
@@ -20,6 +20,9 @@ gulp.src("./src/*.html")
 	.pipe(inject())
 	.pipe(gulp.dest("./dist"));
 ```
+
+# Usage
+`gulp-file-inline` can be used to inline CSS and javascript. See the examples below to get started.
 
 ## Inlining CSS
 To inline your CSS, add this comment where you want to insert the `<style></style>` rules. The best location for this is in your `<head>` section
