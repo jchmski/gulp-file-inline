@@ -13,7 +13,7 @@ Use npm to install `gulp-file-inline` as a development dependency
 npm install --save-dev gulp-file-inline
 ```
 
-Then, add it to your `gulpfile.js`:= file
+Then, add it to your `gulpfile.js` file
 
 ```javascript
 var inject = require("gulp-file-inline");
@@ -27,7 +27,7 @@ gulp.src("./src/*.html")
 `gulp-file-inline` can be used to inline CSS and javascript. See the examples below to get started.
 
 ## Inlining CSS
-To inline your CSS, add this comment where you want to insert the `<style></style>` rules. The best location for this is in your `<head>` section
+Add an `inline` comment where you want to inject the `<style></style>` rules. The best location is in the `head` section
 
 Example:
 ```html
@@ -45,7 +45,7 @@ Output:
 ```
 
 ## Inlining JavaScript
-To inline your JavaScript, add this comment where you want to insert the `<script></script>` rules. The best location immediately before your closing `body` tag
+Add an `inline` comment where you want to inject the `<script></script>` rules. The best location is immediately before the closing `body` tag
 
 Example:
 ```html
