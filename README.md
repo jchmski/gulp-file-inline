@@ -66,6 +66,7 @@ Output:
 - **type** - a string specifying CSS or javascript
 - **path** - the path to your CSS or javascript file that you want to inject into the page
 
+This example will inject the `./src/css/styles.css` directly into all `./src/*.html` files:
 ```javascript
 var inject = require("gulp-file-inline");
 
