@@ -61,9 +61,10 @@ Output:
 ```
 
 ## Parameters
+`gulp-file-inline` takes two parameters:
 
-*type* - a string specifying CSS or javascript
-*path* - the path to your CSS or javascript file that you want to inject into the page
+- **type** - a string specifying CSS or javascript
+- **path** - the path to your CSS or javascript file that you want to inject into the page
 
 ```javascript
 var inject = require("gulp-file-inline");
