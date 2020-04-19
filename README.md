@@ -1,5 +1,5 @@
 
-# gulp-file-inline
+# gulp-inline-code
 
 > a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into client-facing files.
 
@@ -7,16 +7,16 @@ This project is a fork of [gulp-style-inline](https://github.com/vladfilipro/gul
 
 # Installation
 
-Use npm to install `gulp-file-inline` as a development dependency
+Use npm to install `gulp-inline-code` as a development dependency
 
 ```shell
-npm install --save-dev gulp-file-inline
+npm install --save-dev gulp-inline-code
 ```
 
 Then, add it to your `gulpfile.js` file
 
 ```javascript
-var inject = require("gulp-file-inline");
+var inject = require("gulp-inline-code");
 
 gulp.src("./src/*.html")
 	.pipe(inject())
@@ -24,7 +24,7 @@ gulp.src("./src/*.html")
 ```
 
 # Usage
-`gulp-file-inline` can be used to inline CSS and javascript. See the examples below to get started.
+`gulp-inline-code` can be used to inline CSS and javascript. See the examples below to get started.
 
 ## Inlining CSS
 Add an `inline` comment where you want to inject the `<style></style>` rules. The best location is in the `head` section
@@ -63,14 +63,14 @@ Output:
 ```
 
 ## Parameters
-`gulp-file-inline` takes two parameters:
+`gulp-inline-code` takes two parameters:
 
 - **type** - a string specifying CSS (`css`) or javascript (`js`)
 - **path** - the path to your CSS or javascript file that you want to inject into the page
 
 This example will inject the CSS rules at `./src/css/styles.css` directly into all `./src/*.html` files:
 ```javascript
-var inject = require("gulp-file-inline");
+var inject = require("gulp-inline-code");
 
 gulp.src("./src/*.html")
 	.pipe(inject({
@@ -82,7 +82,7 @@ gulp.src("./src/*.html")
 
 This example will inject the JavaScript at `./src/js/scripts.js` directly into all `./src/*.html` files:
 ```javascript
-var inject = require("gulp-file-inline");
+var inject = require("gulp-inline-code");
 
 gulp.src("./src/*.html")
 	.pipe(inject({
