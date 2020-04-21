@@ -1,5 +1,5 @@
 {
-    "name": "gulp-inject-code",
+    "name": "gulp-inline-code",
     "version": "0.1.0",
     "description": "",
     "keywords": [
@@ -10,7 +10,7 @@
         "email": "jchmilarski@gmail.com",
         "url": "https://github.com/jchmski"
     },
-    "repository": "jchmski/gulp-inject-code",
+    "repository": "jchmski/gulp-inline-code",
     "dependencies": {
         "through2": "0.6.3"
     },
