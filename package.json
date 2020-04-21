@@ -24,7 +24,7 @@
         "should": "5.0.0"
 	},
 	"scripts": {
-		"postinstall": "cd ./node_modules/gulp-inline-code && npm install && npm run build"
+		"postinstall": "cd ./node_modules/gulp-inline-code && npm install"
 	},
     "engines": {
         "node": ">=0.8.0",
