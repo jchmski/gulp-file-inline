@@ -1,9 +1,9 @@
 
 # gulp-inline-code
 
-> a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into client-facing files.
+> a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into output files for superb performance benefits 🚀
 
-This project is a fork of [gulp-style-inline](https://github.com/vladfilipro/gulp-style-inject). Thank you Vlad Filip!
+This project is a fork of [gulp-style-inject](https://github.com/vladfilipro/gulp-style-inject). Thank you Vlad Filip!
 
 # Installation
 
@@ -19,7 +19,9 @@ Then, add it to your `gulpfile.js` file
 var inject = require("gulp-inline-code");
 
 gulp.src("./src/*.html")
-	.pipe(inject())
+	.pipe(inject({
+		// options (see examples below)
+	}))
 	.pipe(gulp.dest("./dist"));
 ```
 
