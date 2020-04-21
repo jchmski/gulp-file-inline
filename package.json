@@ -10,7 +10,7 @@
         "email": "jchmilarski@gmail.com",
         "url": "https://github.com/jchmski"
     },
-    "repository": "jchmski/gulp-inline-code",
+	"repository": "jchmski/gulp-inline-code",
     "dependencies": {
         "through2": "0.6.3"
     },
@@ -22,7 +22,10 @@
         "mocha-lcov-reporter": "0.0.1",
         "plugin-error": "^1.0.1",
         "should": "5.0.0"
-    },
+	},
+	"scripts": {
+		"postinstall": "cd ./node_modules/gulp-inline-code && npm install && npm run build"
+	},
     "engines": {
         "node": ">=0.8.0",
         "npm": ">=1.2.10"
