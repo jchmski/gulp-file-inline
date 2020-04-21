@@ -1,105 +1,85 @@
-var through = require( 'through2' );
-var gutil = require( 'gulp-util' );
-var fs = require( 'fs' );
-var path = require('path');
+var through = require('through2'),
+	PluginError = require('plugin-error');
+	fs = require('fs'),
+	path = require('path');
 
-module.exports = function ( option ) {
-    'use strict';
+module.exports = function (options) {
+	'use strict';
 
-    var CONST_PATTERN = '<\\!--\\s*inject-style\\s*(.*?)\\s*-->';
+	var INJECT_PATTERN = '<\\!--\\s*inject:' + options.type + '\\s*-->';
 
-    var self = null;
+	var self = null;
 
-    if ( !option ) {
-        option = {};
-    }
+	// no options object specified
+	if (!options) {
+		new PluginError('gulp-inject-code', 'Object parameters missing');
+	}
 
-    if ( option.match_pattern ) {
-        try {
-            new RegExp( option.match_pattern );
-        } catch ( e ) {
-            this.emit( 'error',
-                new gutil.PluginError( 'gulp-style-inject', ' Invalid `match_pattern` parameter. Regular expression string required.' ) );
-        }
-    } else {
-        option.match_pattern = CONST_PATTERN;
-    }
+	// no type specified
+	if (!options.type) {
+		new PluginError('gulp-inject-code', 'No type specified. Valid types are css and js');
+	}
 
-    if (!option.path) {
-        option.path = '';
-    }
+	// invalid type specified
+	if (!["css", "js"].includes(options.type)) {
+		new PluginError('gulp-inject-code', 'Invalid type specified. Valid types are css and js');
+	}
 
-    if (option.encapsulated === undefined) {
-        option.encapsulated = true
-    } else {
-        option.encapsulated = !!option.encapsulated
-    }
+	// no path specified
+	if (!options.path) {
+		new PluginError('gulp-inject-code', 'No path specified');
+	}
 
-    function throwError( msg ) {
-        self.emit( 'error',
-            new gutil.PluginError( 'gulp-style-inject', msg ) );
-    }
+	function throwError(msg) {
+		new PluginError('gulp-inject-code', msg);
+	}
 
-    function transformResponse( contents ) {
-        return (option.encapsulated) ? '<style>\n' + contents + '\n</style>' : contents;
-    }
+	function transformResponse(contents) {
+		var tag = (options.type === "css") ? "style" : "script";
 
-    function getAttributes( params ) {
-        var result = {};
-        var group = params.replace( /\s+/gi, ' ' )
-            .split( ' ' );
-        for ( var i = 0; i < group.length; i++ ) {
-            if ( group[ i ] ) {
-                var combination = group[ i ].split( '=' );
-                result[ combination[ 0 ].replace( /\s*['"](.*)['"]\s*/, '$1' ) ] = combination[ 1 ].replace( /\s*['"](.*)['"]\s*/, '$1' );
-            }
-        }
-        return result;
-    }
+		return '<' + tag + '>\n' + contents + '\n</' + tag + '>';
+	}
 
-    function getStyleFile( source ) {
-        if ( source && fs.existsSync( source ) ) {
-            return transformResponse( fs.readFileSync( source ) );
-        } else {
-            throwError( 'ERROR: Source file (' + source + ') cannot be found.' );
-        }
-    }
+	// get the css/javascript file to be injected
+	function getInjectFile(source) {
+		if (source && fs.existsSync(source)) {
+			return transformResponse(fs.readFileSync(source));
+		} else {
+			new PluginError('gulp-inject-code', 'ERROR: Source file (' + source + ') cannot be found');
+		}
+	}
 
-    function styleInject( file, enc, callback ) {
-        /*jshint validthis:true*/
+	function injectCode(file, enc, callback) {
+		self = this;
 
-        self = this;
+		// Do nothing if no contents
+		if (file.isNull()) {
+			this.push(file);
+			return callback();
+		}
 
-        // Do nothing if no contents
-        if ( file.isNull() ) {
-            this.push( file );
-            return callback();
-        }
+		// check if file.contents is a `Stream`
+		if (file.isStream()) {
+			// accepting streams is optional
+			new PluginError('error', new gutil.PluginError('gulp-inject-code', 'Stream content is not supported'));
+			return callback();
+		}
 
-        // check if file.contents is a `Stream`
-        if ( file.isStream() ) {
-            // accepting streams is optional
-            this.emit( 'error',
-                new gutil.PluginError( 'gulp-style-inject', 'Stream content is not supported' ) );
-            return callback();
-        }
+		// check if file.contents is a `Buffer`
+		if (file.isBuffer()) {
+			var contents = String(file.contents);
 
-        // check if file.contents is a `Buffer`
-        if ( file.isBuffer() ) {
-            var contents = String( file.contents );
+			contents = contents.replace(new RegExp(INJECT_PATTERN, 'gi'), function (match, parameters) {
+				return getInjectFile(options.path);
+			});
 
-            contents = contents.replace( new RegExp( option.match_pattern, 'gi' ), function ( match, parameters ) {
-                var attrs = getAttributes( parameters );
-                return getStyleFile( path.join(option.path , attrs.src) );
-            } );
+			file.contents = new Buffer(contents);
+			this.push(file);
+			return callback();
+		}
 
-            file.contents = new Buffer( contents );
-            this.push( file );
-            return callback();
-        }
+		return callback();
+	}
 
-        return callback();
-    }
-
-    return through.obj( styleInject );
+	return through.obj(injectCode);
 };

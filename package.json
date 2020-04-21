@@ -1,30 +1,26 @@
 {
-    "name": "gulp-style-inject",
-    "version": "0.1.2",
-    "description": "A plugin for Gulp. Inject css file into html style tags.",
+    "name": "gulp-inject-code",
+    "version": "0.1.0",
+    "description": "",
     "keywords": [
         "gulpplugin"
     ],
     "author": {
-        "name": "Vlad Filip",
-        "email": "vlad.filip.dev@gmail.ro",
-        "url": "https://github.com/vladfilipro"
+        "name": "John Chmilarski",
+        "email": "jchmilarski@gmail.com",
+        "url": "https://github.com/jchmski"
     },
-    "repository": "vladfilipro/gulp-style-inject",
-    "scripts": {
-        "test": "istanbul test ./node_modules/mocha/bin/_mocha --report html -- test/*.js --reporter spec",
-        "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
-    },
+    "repository": "jchmski/gulp-inject-code",
     "dependencies": {
-        "through2": "0.6.3",
-        "gulp-util": "3.0.3"
+        "through2": "0.6.3"
     },
     "devDependencies": {
-        "mocha": "2.1.0",
         "coveralls": "2.11.2",
-        "mocha-lcov-reporter": "0.0.1",
-        "istanbul": "0.3.5",
         "event-stream": "3.2.2",
+        "istanbul": "0.3.5",
+        "mocha": "2.1.0",
+        "mocha-lcov-reporter": "0.0.1",
+        "plugin-error": "^1.0.1",
         "should": "5.0.0"
     },
     "engines": {
