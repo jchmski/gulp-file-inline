@@ -37,7 +37,7 @@ module.exports = function (options) {
 	function transformResponse(contents) {
 		var tag = (options.type === "css") ? "style" : "script";
 
-		return '<' + tag + '>\n' + contents + '\n</' + tag + '>';
+		return '<' + tag + '>\n' + contents.toString().trim() + '\n</' + tag + '>';
 	}
 
 	// get the css/javascript file to be injected
