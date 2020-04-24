@@ -1,16 +1,12 @@
 {
     "name": "gulp-inline-code",
-    "version": "0.1.2",
-    "description": "",
-    "keywords": [
-        "gulpplugin"
-    ],
+    "version": "0.8.0",
+    "description": "A gulp plugin for inlining CSS and javascript files directly into output files for superb performance benefits",
     "author": {
         "name": "John Chmilarski",
         "email": "jchmilarski@gmail.com",
         "url": "https://github.com/jchmski"
     },
-    "repository": "jchmski/gulp-inline-code",
     "dependencies": {
         "through2": "0.6.3"
     },
@@ -20,7 +16,11 @@
     "engines": {
         "node": ">=0.8.0",
         "npm": ">=1.2.10"
-    },
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jchmski/gulp-inline-code.git"
+	},
     "licenses": [
         {
             "type": "MIT",

@@ -12,26 +12,26 @@ module.exports = function (options) {
 
 	// no options object specified
 	if (!options) {
-		new PluginError('gulp-inject-code', 'Object parameters missing');
+		new PluginError('gulp-inline-code', 'Object parameters missing');
 	}
 
 	// no type specified
 	if (!options.type) {
-		new PluginError('gulp-inject-code', 'No type specified. Valid types are css and js');
+		new PluginError('gulp-inline-code', 'No type specified. Valid types are css and js');
 	}
 
 	// invalid type specified
 	if (!["css", "js"].includes(options.type)) {
-		new PluginError('gulp-inject-code', 'Invalid type specified. Valid types are css and js');
+		new PluginError('gulp-inline-code', 'Invalid type specified. Valid types are css and js');
 	}
 
 	// no path specified
 	if (!options.path) {
-		new PluginError('gulp-inject-code', 'No path specified');
+		new PluginError('gulp-inline-code', 'No path specified');
 	}
 
 	function throwError(msg) {
-		new PluginError('gulp-inject-code', msg);
+		new PluginError('gulp-inline-code', msg);
 	}
 
 	function transformResponse(contents) {
@@ -45,7 +45,7 @@ module.exports = function (options) {
 		if (source && fs.existsSync(source)) {
 			return transformResponse(fs.readFileSync(source));
 		} else {
-			new PluginError('gulp-inject-code', 'ERROR: Source file (' + source + ') cannot be found');
+			new PluginError('gulp-inline-code', 'ERROR: Source file (' + source + ') cannot be found');
 		}
 	}
 
@@ -61,7 +61,7 @@ module.exports = function (options) {
 		// check if file.contents is a `Stream`
 		if (file.isStream()) {
 			// accepting streams is optional
-			new PluginError('error', new gutil.PluginError('gulp-inject-code', 'Stream content is not supported'));
+			new PluginError('error', new gutil.PluginError('gulp-inline-code', 'Stream content is not supported'));
 			return callback();
 		}
 

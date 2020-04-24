@@ -1,7 +1,7 @@
 
 # gulp-inline-code
 
-> a [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into output files for superb performance benefits 🚀
+> A [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into output files for superb performance benefits 🚀
 
 This project is a fork of [gulp-style-inject](https://github.com/vladfilipro/gulp-style-inject). Thank you Vlad Filip!
 
@@ -10,7 +10,7 @@ This project is a fork of [gulp-style-inject](https://github.com/vladfilipro/gul
 Use npm to install `gulp-inline-code` as a development dependency
 
 ```shell
-npm install --save-dev gulp-inline-code
+npm install --save-dev jchmski/gulp-inline-code
 ```
 
 Then, add it to your `gulpfile.js` file
