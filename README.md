@@ -1,22 +1,22 @@
 
-# gulp-inline-code
+# gulp-inject-code
 
-> A [gulp](https://github.com/wearefractal/gulp) plugin for inlining CSS and javascript files directly into output files for superb performance benefits 🚀
+> A [gulp](https://github.com/wearefractal/gulp) plugin for injecting CSS and javascript files directly into output files for stellar performance 🚀
 
 This project is a fork of [gulp-style-inject](https://github.com/vladfilipro/gulp-style-inject). Thank you Vlad Filip!
 
 # Installation
 
-Use npm to install `gulp-inline-code` as a development dependency
+Use npm to install `gulp-inject-code` as a development dependency
 
 ```shell
-npm install --save-dev jchmski/gulp-inline-code
+npm install --save-dev jchmski/gulp-inject-code
 ```
 
 Then, add it to your `gulpfile.js` file
 
 ```javascript
-var inject = require("gulp-inline-code");
+var inject = require("gulp-inject-code");
 
 gulp.src("./src/*.html")
 	.pipe(inject({
@@ -26,16 +26,16 @@ gulp.src("./src/*.html")
 ```
 
 # Usage
-`gulp-inline-code` can be used to inline CSS and javascript. See the examples below to get started.
+`gulp-inject-code` can be used to inject CSS and javascript. See the examples below to get started.
 
 ## Inlining CSS
-Add an `inline` comment where you want to inject the `<style></style>` rules. The best location is in the `head` section
+Add an `inject` comment where you want to inject the `<style></style>` rules. The best location is in the `head` section
 
 Example:
 ```html
 <head>
 	...
-	<!-- inline:css -->
+	<!-- inject:css -->
 </head>
 ```
 Output:
@@ -47,13 +47,13 @@ Output:
 ```
 
 ## Inlining JavaScript
-Add an `inline` comment where you want to inject the `<script></script>` rules. The best location is immediately before the closing `body` tag
+Add an `inject` comment where you want to inject the `<script></script>` rules. The best location is immediately before the closing `body` tag
 
 Example:
 ```html
 <body>
 	...
-	<!-- inline:js -->
+	<!-- inject:js -->
 </body>
 ```
 Output:
@@ -65,14 +65,14 @@ Output:
 ```
 
 ## Parameters
-`gulp-inline-code` takes two parameters:
+`gulp-inject-code` takes two parameters:
 
 - **type** - a string specifying CSS (`css`) or javascript (`js`)
 - **path** - the path to your CSS or javascript file that you want to inject into the page
 
 This example will inject the CSS rules at `./src/css/styles.css` directly into all `./src/*.html` files:
 ```javascript
-var inject = require("gulp-inline-code");
+var inject = require("gulp-inject-code");
 
 gulp.src("./src/*.html")
 	.pipe(inject({
@@ -84,7 +84,7 @@ gulp.src("./src/*.html")
 
 This example will inject the JavaScript at `./src/js/scripts.js` directly into all `./src/*.html` files:
 ```javascript
-var inject = require("gulp-inline-code");
+var inject = require("gulp-inject-code");
 
 gulp.src("./src/*.html")
 	.pipe(inject({
